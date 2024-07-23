@@ -26,6 +26,7 @@
                 @endforelse
             </tbody>
         </table>
+        {!! $users->withQueryString()->links('pagination::bootstrap-5') !!}
     </div>
 </div>
 @endsection
