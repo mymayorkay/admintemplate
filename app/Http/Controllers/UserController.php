@@ -14,7 +14,8 @@ class UserController extends Controller
      */
     public function dashboard(Request $request)
     {
-        return view('dashboard');
+        $userCount = User::count();
+        return view('dashboard', compact('userCount'));
     }
 
     /**
@@ -27,5 +28,6 @@ class UserController extends Controller
 
         $users = User::paginate(10);
         return view('users', compact('users'));
+        $userCount = User::count();
     }
 }
