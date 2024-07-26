@@ -27,5 +27,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('searchdemo', [UserController::class, 'mysearch']);
+Route::get('autocomplete', [UserController::class, 'autocomplete'])->name('autocomplete');
+
 
 

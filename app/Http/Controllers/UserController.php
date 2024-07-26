@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-
+use Illuminate\View\View;
+use Illuminate\Http\JsonResponse;
 class UserController extends Controller
 {
     /**
@@ -30,4 +31,23 @@ class UserController extends Controller
         return view('users', compact('users'));
         $userCount = User::count();
     }
+
+
+    public function mysearch(): View
+    {
+        return view('searchdemo');
+    }
+
+    public function autocomplete(Request $request): JsonResponse
+    {
+        $data = User::select("name")
+                    ->where('name', 'LIKE', '%'. $request->get('query'). '%')
+                    ->take(10)
+                    ->get();
+
+        return response()->json($data);
+    }
+
+
+
 }
